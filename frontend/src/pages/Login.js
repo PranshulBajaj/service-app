@@ -50,12 +50,12 @@ export default function Login() {
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label>Email</label>
-            <input className="form-control" type="email" placeholder="john@email.com"
+            <input className="form-control" type="email" placeholder="Your Email"
               value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required />
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" placeholder="Your password"
+            <input className="form-control" type="password" placeholder="Your Password"
               value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} required />
           </div>
           <button className="btn-primary" type="submit" disabled={loading}>

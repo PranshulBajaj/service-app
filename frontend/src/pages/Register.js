@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
 
 export default function Register() {
-  const [step, setStep] = useState('form'); // 'form' | 'otp'
+  const [step, setStep] = useState('form');
   const [userId, setUserId] = useState(null);
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' });
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -64,14 +64,27 @@ export default function Register() {
   return (
     <div className="auth-page">
       <div className="auth-card">
+
+        {/* Role badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+          <span style={{ fontSize: '1.6rem' }}>🙋</span>
+          <span style={{
+            background: 'var(--primary-light)', color: 'var(--primary)',
+            fontSize: '0.78rem', fontWeight: 700, padding: '0.25rem 0.7rem',
+            borderRadius: '20px', textTransform: 'uppercase'
+          }}>
+            Customer Sign Up
+          </span>
+        </div>
+
         {step === 'form' ? (
           <>
             <h2>Create Account</h2>
-            <p className="sub">Sign up as a customer to book services</p>
+            <p className="sub">Sign up to book home services</p>
             <form onSubmit={handleRegister}>
               <div className="form-group">
                 <label>Full Name</label>
-                <input className="form-control" placeholder="Your Name" value={form.name}
+                <input className="form-control" placeholder="Your Full Name" value={form.name}
                   onChange={e => setForm({ ...form, name: e.target.value })} required />
               </div>
               <div className="form-group">
@@ -81,7 +94,7 @@ export default function Register() {
               </div>
               <div className="form-group">
                 <label>Phone</label>
-                <input className="form-control" type="tel" placeholder="Your Phone" value={form.phone}
+                <input className="form-control" type="tel" placeholder="Your Phone Number" value={form.phone}
                   onChange={e => setForm({ ...form, phone: e.target.value })} required />
               </div>
               <div className="form-group">
@@ -93,9 +106,11 @@ export default function Register() {
                 {loading ? 'Sending OTP...' : 'Send OTP & Register'}
               </button>
             </form>
-            <div className="auth-link">Already have an account? <Link to="/login">Login</Link></div>
+            <div className="auth-link">Already have an account? <Link to="/login?role=customer">Login</Link></div>
             <div className="auth-link" style={{ marginTop: '0.5rem' }}>
-              Are you a vendor? <Link to="/vendor-register">Register as Vendor</Link>
+              <a href="#switch" style={{ color: 'var(--text-muted)' }} onClick={e => { e.preventDefault(); navigate('/vendor-register'); }}>
+                Switch to Vendor Sign Up →
+              </a>
             </div>
           </>
         ) : (
