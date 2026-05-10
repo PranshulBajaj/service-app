@@ -9,7 +9,13 @@ const bookingRoutes = require('./routes/bookings');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://service-app-seven.vercel.app'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
