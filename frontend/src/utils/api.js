@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'https://service-app-8qyd.onrender.com/api' });
+const api = axios.create({ baseURL: 'https://service-app-e563.vercel.app/api' });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
